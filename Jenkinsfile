@@ -1,34 +1,51 @@
+
 pipeline {
-
 	agent {
-		label "built-in" 
+			label "built-in"
 	}
+	
 	stages {
-		stage ("install-git") {
-		agent {
-		label {
-		label "slave-1"
-		customWorkspace "/mnt/pipeline"
-		steps {
-		sh "yum install git -y"
-		}
-		
-		}}}
- 		stage ("install-httpd")
-		agent {
-		label {
-		label "slave-2"
-		customWorkspace "/mnt/data"
-		steps {
-		sh "yum install httpd -y"
-		}
-
-		}}}
-		/*stage ("install-httpd-git")
-		agent any
-		customWorkspace "/mnt/uat"
-		steps {
-		sh "yum install git -y"
-		}
-		}}}*/
+				stage ("install-git") {
+					steps {
+					
+							sh "yum install git -y"
+					}
+				}
+				
+				stage ("install-httpd-slave-1") {
+				
+				agent {
+					
+					label {
+								label "slave-1"
+								customWorkspace "/mnt/pipeline"
+					}
+				
+				}
+				
+				steps {
+							sh "sudo yum install httpd -y"
+				}
+					
+				
+				}
+				
+				stage ("install-httpd-git-slave-2") {
+				
+				agent {
+					
+					label {
+								label "slave-2"
+								customWorkspace "/mnt/pipeline"
+					}
+				
+				}
+				
+				steps {
+							sh "sudo yum install httpd git -y"
+				}
+					
+				
+				}
+	}
 }

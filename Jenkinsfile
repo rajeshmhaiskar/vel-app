@@ -17,8 +17,8 @@ pipeline {
 				agent {
 					
 					label {
-								label "built-in"
-								customWorkspace "/mnt/velocity"
+								label "slave-1"
+								
 					}
 				
 				}
@@ -35,8 +35,8 @@ pipeline {
 				agent {
 					
 					label {
-								label "built-in"
-								customWorkspace "/mnt/data"
+								label "slave-2"
+								
 					}
 				
 				}

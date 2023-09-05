@@ -31,4 +31,4 @@ pipeline {
 		sh "yum install git -y"
 		}
 		}}}*/
-}}
+}
